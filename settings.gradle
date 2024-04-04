@@ -1,0 +1,31 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "LearnSample"
+include ':app'
+include ':base'
+project(':base').projectDir = new File(rootDir, 'common/base')
+include ':rxjava'
+project(':rxjava').projectDir = new File(rootDir, 'thirdparty/rxjava')
+include ':jetpack'
+project(':jetpack').projectDir = new File(rootDir, 'selfcontain/jetpack')
+include ':customview'
+project(':customview').projectDir = new File(rootDir, 'selfcontain/customview')

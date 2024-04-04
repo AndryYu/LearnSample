@@ -1,0 +1,12 @@
+ext {
+    //版本号
+    versions = [
+            compileSdkVersion: 31,
+            buildToolsVersion: "30.0.2"
+    ]
+
+    //依赖库
+    libraries =[
+
+    ]
+}
