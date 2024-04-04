@@ -23,9 +23,20 @@ rootProject.name = "LearnSample"
 include ':app'
 include ':base'
 project(':base').projectDir = new File(rootDir, 'common/base')
-include ':rxjava'
-project(':rxjava').projectDir = new File(rootDir, 'thirdparty/rxjava')
+include ':ui'
+project(':ui').projectDir = new File(rootDir, 'common/ui')
+
 include ':jetpack'
 project(':jetpack').projectDir = new File(rootDir, 'selfcontain/jetpack')
 include ':customview'
 project(':customview').projectDir = new File(rootDir, 'selfcontain/customview')
+include ':moduleself'
+project(':moduleself').projectDir = new File(rootDir, 'selfcontain/moduleself')
+
+include ':modulethird'
+project(':modulethird').projectDir = new File(rootDir, 'thirdparty/modulethird')
+include ':arouter'
+project(':arouter').projectDir = new File(rootDir, 'thirdparty/arouter')
+include ':rxjava'
+project(':rxjava').projectDir = new File(rootDir, 'thirdparty/rxjava')
+

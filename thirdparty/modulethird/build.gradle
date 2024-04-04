@@ -2,10 +2,9 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
-apply from: '../../config/config.gradle'
 
 android {
-    namespace 'com.andryu.kotlin.base'
+    namespace 'com.andryu.kotlin.third'
     compileSdk 34
 
     defaultConfig {
@@ -28,10 +27,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-    api libs.androidx.core.ktx
-    api libs.androidx.appcompat
-    api libs.material
+
+    implementation project(':base')
+    implementation project(':ui')
+    implementation project(':rxjava')
 }

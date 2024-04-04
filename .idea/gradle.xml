@@ -11,8 +11,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/common/base" />
+            <option value="$PROJECT_DIR$/common/ui" />
             <option value="$PROJECT_DIR$/selfcontain/customview" />
             <option value="$PROJECT_DIR$/selfcontain/jetpack" />
+            <option value="$PROJECT_DIR$/selfcontain/moduleself" />
+            <option value="$PROJECT_DIR$/thirdparty/arouter" />
+            <option value="$PROJECT_DIR$/thirdparty/modulethird" />
             <option value="$PROJECT_DIR$/thirdparty/rxjava" />
           </set>
         </option>
