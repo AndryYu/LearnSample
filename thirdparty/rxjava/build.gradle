@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
 }
+apply from: '../../config/config.gradle'
 
 android {
     namespace 'com.andryu.kotlin.rxjava'
@@ -35,4 +36,6 @@ android {
 dependencies {
     implementation project(':base')
     implementation project(':ui')
+    implementation libraries.rxjava
+    implementation libraries.rxAndroid
 }
