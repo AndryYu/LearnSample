@@ -1,6 +1,8 @@
 package com.andryu.kotlin.rxjava.impl
 
 import android.annotation.SuppressLint
+import android.util.Log
+import com.andryu.kotlin.rxjava.data.RxjavaOptEntity
 import io.reactivex.Observable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Single
@@ -20,6 +22,7 @@ class RxCreateOptImpl : IRxOptListener {
         emitter.onNext("Option")
         emitter.onNext(":")
         emitter.onNext(mType)
+        emitter.onComplete()
     }
     private val singleResult = SingleOnSubscribe<String> {
         it.onSuccess("Single:$mType")
@@ -31,15 +34,27 @@ class RxCreateOptImpl : IRxOptListener {
         mSingleHashMap["create"] = Single.create(singleResult)
     }
 
+    override fun getList(): MutableList<RxjavaOptEntity> {
+        val list = mutableListOf<RxjavaOptEntity>()
+        list.add(RxjavaOptEntity("操作符Create(Single)", "create"))
+
+        return list
+    }
+
     @SuppressLint("CheckResult")
     override fun doOpt(type: String, callBack: (value: String) -> Unit) {
         val result = StringBuffer()
+        mType = type
+
         mHashMap[type]?.subscribe({
             result.append(it)
+            Log.d("Rxjava","RxCreateOptImpl doOpt:$it")
         }, {
             callBack("throwable: $result")
+            Log.d("Rxjava","RxCreateOptImpl doOpt throwable: $result")
         }) {
             callBack(result.toString())
+            Log.d("Rxjava","RxCreateOptImpl doOpt $result")
         }
     }
 

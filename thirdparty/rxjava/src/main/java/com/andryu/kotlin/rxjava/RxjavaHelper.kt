@@ -25,7 +25,7 @@ class RxjavaHelper private constructor(){
     /**
      * 获取相应操作符类型实现类
      */
-    fun getOptImpl(type: RxjavaOptType): IRxOptListener {
+    fun getOptImpl(type: Int): IRxOptListener {
         val optImpl: IRxOptListener = when(type){
             RxjavaOptType.CREATE -> RxCreateOptImpl()
             RxjavaOptType.TRANSFER -> RxTransferOptImpl()
@@ -36,6 +36,7 @@ class RxjavaHelper private constructor(){
             RxjavaOptType.AUXILIARY -> RxAuxiliaryOptImpl()
             RxjavaOptType.CONDITIONAL -> RxConditionalOptImpl()
             RxjavaOptType.CONNECT -> RxConnectOptImpl()
+            else -> {RxCreateOptImpl()}
         }
         return optImpl
     }

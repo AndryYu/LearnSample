@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.andryu.kotlin.base.entity.LearnEntity
 import com.andryu.kotlin.base.fragment.BaseFragment
 import com.andryu.kotlin.base.listener.IFragmentListener
-import com.andryu.kotlin.rxjava.RxjavaFragment
+import com.andryu.kotlin.rxjava.RxjavaCategoryFragment
 import com.andryu.kotlin.third.databinding.FragmentThirdPartyBinding
 
 /**
@@ -53,7 +53,7 @@ class ThirdPartyFragment : BaseFragment() {
      */
     private fun initData() {
         mDataList.clear()
-        mDataList.add(LearnEntity("Rxjava", RxjavaFragment()))
+        mDataList.add(LearnEntity("Rxjava", RxjavaCategoryFragment()))
     }
 
     override fun onDestroyView() {
