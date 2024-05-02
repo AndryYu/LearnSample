@@ -33,7 +33,7 @@ class RxjavaContentFragment:BaseFragment() {
         mRxjavaImpl = type?.let {
             RxjavaHelper.instance.getOptImpl(it)
         }
-        val mAdapter = mRxjavaImpl?.getList()?.let { RxjavaOptAdapter(it) }
+        val mAdapter = mRxjavaImpl?.getList()?.let { RxjavaOptAdapter(requireContext(), it) }
 
         binding.rvRxjavaOpt.apply {
             layoutManager = LinearLayoutManager(requireContext())

@@ -1,5 +1,6 @@
 package com.andryu.kotlin.rxjava.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andryu.kotlin.rxjava.R
 import com.andryu.kotlin.rxjava.data.RxjavaOptEntity
 
-class RxjavaOptAdapter(private val dataList:MutableList<RxjavaOptEntity>) :
+class RxjavaOptAdapter(private val mContext: Context, private val dataList: MutableList<RxjavaOptEntity>) :
     RecyclerView.Adapter<RxjavaOptAdapter.RxjavaOptViewHolder>() {
     private var mListener: ((RxjavaOptEntity) -> Unit?)? = null
 
     fun setOnItemClick(listener: ((RxjavaOptEntity) -> Unit)) {
         mListener = listener
     }
-    class RxjavaOptViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
-        val tvName:AppCompatTextView = itemView.findViewById(R.id.tv_opt_type)
+
+    class RxjavaOptViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvName: AppCompatTextView = itemView.findViewById(R.id.tv_opt_type)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RxjavaOptViewHolder {
@@ -33,6 +35,9 @@ class RxjavaOptAdapter(private val dataList:MutableList<RxjavaOptEntity>) :
         val entity = dataList[position]
         holder.run {
             tvName.text = entity.name
+            tvName.textSize = 15f
+            tvName.setPadding(mContext.resources.getDimension(com.andryu.kotlin.ui.R.dimen.dp_10).toInt(),0,
+                mContext.resources.getDimension(com.andryu.kotlin.ui.R.dimen.dp_10).toInt(),0)
             itemView.setOnClickListener {
                 mListener?.invoke(entity)
             }
