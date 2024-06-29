@@ -31,12 +31,14 @@ class MainActivity : AppCompatActivity() {
         mAdapter?.setOnItemClick {
             onFragmentClick(it.fragment)
         }
+        //默认选中第一个
+        onFragmentClick(ThirdPartyFragment())
     }
 
     private fun initData(){
         mDataList.clear()
-        mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
         mDataList.add(LearnEntity("Third 开源库", ThirdPartyFragment()))
+        mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
         mDataList.add(LearnEntity("Ndk 开发", NdkFragment()))
     }
 

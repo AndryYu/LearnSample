@@ -1,15 +1,18 @@
 package com.andryu.kotlin.rxjava
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.andryu.kotlin.base.LogUtils
 import com.andryu.kotlin.base.fragment.BaseFragment
+import com.andryu.kotlin.base.listener.IFragmentListener
 import com.andryu.kotlin.rxjava.adapter.RxjavaTypeAdapter
-import com.andryu.kotlin.rxjava.data.RxjavaTypeEntity
 import com.andryu.kotlin.rxjava.data.RxjavaOptType
+import com.andryu.kotlin.rxjava.data.RxjavaTypeEntity
 import com.andryu.kotlin.rxjava.databinding.FragmentRxjavaCategoryBinding
 
 /**
@@ -17,8 +20,17 @@ import com.andryu.kotlin.rxjava.databinding.FragmentRxjavaCategoryBinding
  */
 class RxjavaCategoryFragment : BaseFragment() {
 
+    private val TAG:String = "RxjavaCategoryFragment"
     private lateinit var binding: FragmentRxjavaCategoryBinding
     private var mDataList:MutableList<RxjavaTypeEntity> = mutableListOf()
+
+    private var mCallBack: IFragmentListener? = null
+
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.parentFragment.also { mCallBack = it as IFragmentListener }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,13 +51,14 @@ class RxjavaCategoryFragment : BaseFragment() {
             isNestedScrollingEnabled = false
         }
         mAdapter.setOnItemClick {
-            Log.d("Rxjava", "onItemClick:" + it.name)
+            LogUtils.d(TAG, "onItemClick:" + it.name)
             binding.flRxOpt.visibility = View.VISIBLE
             val fragment = RxjavaContentFragment()
             val bundle = Bundle();
             bundle.putInt("rxjavaType", it.type)
             fragment.arguments = bundle
-            childFragmentManager.beginTransaction().replace(R.id.fl_rx_opt, fragment).commitAllowingStateLoss();
+            //childFragmentManager.beginTransaction().replace(R.id.fl_rx_opt, fragment).commitAllowingStateLoss();
+            mCallBack?.onFragmentClick(fragment)
         }
     }
 
@@ -61,6 +74,5 @@ class RxjavaCategoryFragment : BaseFragment() {
         mDataList.add(RxjavaTypeEntity("算术和聚合操作", RxjavaOptType.ARITHMETIC))
         mDataList.add(RxjavaTypeEntity("连接操作", RxjavaOptType.CONNECT))
     }
-
 
 }

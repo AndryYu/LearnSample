@@ -11,15 +11,17 @@
         android:id="@+id/rv_main"
         android:layout_height="match_parent"
         android:layout_width="0dp"
+        android:background="@color/purple_200_4F"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.24"/>
+        app:layout_constraintWidth_percent="0.2"/>
 
     <FrameLayout
         android:id="@+id/fl_main"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:background="@color/purple_200_1F"
         app:layout_constraintStart_toEndOf="@+id/rv_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

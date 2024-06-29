@@ -13,6 +13,8 @@
             android:id="@+id/tv_rxjava_brief"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/purple_500"
             android:text="@string/txt_rxjava_brief"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
