@@ -19,6 +19,9 @@ dependencyResolutionManagement {
     }
 }
 
+
+
+
 rootProject.name = "LearnSample"
 include ':app'
 include ':base'
@@ -39,4 +42,5 @@ include ':arouter'
 project(':arouter').projectDir = new File(rootDir, 'thirdparty/arouter')
 include ':rxjava'
 project(':rxjava').projectDir = new File(rootDir, 'thirdparty/rxjava')
-
+include ':modulendk'
+project(':modulendk').projectDir = new File(rootDir, 'ndk/modulendk')

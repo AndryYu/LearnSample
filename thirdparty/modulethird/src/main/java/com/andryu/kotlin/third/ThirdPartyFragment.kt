@@ -8,32 +8,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andryu.kotlin.base.entity.LearnEntity
 import com.andryu.kotlin.base.fragment.BaseFragment
-import com.andryu.kotlin.base.listener.IFragmentListener
 import com.andryu.kotlin.rxjava.RxjavaCategoryFragment
-import com.andryu.kotlin.third.databinding.FragmentThirdPartyBinding
+import com.andryu.kotlin.third.databinding.FragmentThirdLibraryBinding
 
 /**
  * 第三方库 目录fragment
  */
 class ThirdPartyFragment : BaseFragment() {
 
-    private var _binding: FragmentThirdPartyBinding? = null
+    private var _binding: FragmentThirdLibraryBinding? = null
     private val binding get() = _binding!!
     private var mDataList = mutableListOf<LearnEntity>()
-    private var mAdapter: ThirdPartyAdapter ?=null
-    private var mCallBack: IFragmentListener? = null
+    private var mAdapter: ThirdPartyAdapter? = null
 
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        this.activity.also { mCallBack = it as IFragmentListener }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentThirdPartyBinding.inflate(inflater, container, false)
+        _binding = FragmentThirdLibraryBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,8 +41,15 @@ class ThirdPartyFragment : BaseFragment() {
         mAdapter = ThirdPartyAdapter(mDataList)
         binding.rvThirdParty.adapter = mAdapter
         mAdapter?.setOnItemClick {
-            mCallBack?.onFragmentClick(it.fragment)
+            onFragmentClick(it.fragment)
         }
+    }
+
+    private fun onFragmentClick(fragment: BaseFragment) {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fl_third_content, fragment)
+            .addToBackStack(fragment::class.java.name)
+            .commitAllowingStateLoss()
     }
 
     /**

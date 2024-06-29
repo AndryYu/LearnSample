@@ -11,6 +11,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
 /**
@@ -132,14 +133,14 @@ class RxCreateOptImpl : IRxOptListener {
                         Log.d("Rxjava", "RxCreateOptImpl doOpt $it")
                         callBack(it)
                     } else {
-                        result.append(it)
+                        result.append("$it ")
                     }
                 }, {
                     callBack("throwable: ${it.message}")
                     Log.d("Rxjava", "RxCreateOptImpl doOpt throwable: ${it.message}")
                 }) {
                     mDisposable?.dispose()
-                    callBack(result.toString())
+                    callBack(result.toString().trim())
                     Log.d("Rxjava", "RxCreateOptImpl doOpt $result")
                 }
         }
