@@ -11,4 +11,7 @@
     <color name="purple_200_4F">#4FBB86FC</color>
     <color name="purple_200_1F">#1FBB86FC</color>
     <color name="purple_200_9F">#9FBB86FC</color>
+    <color name="teal_700_9F">#1F018786</color>
+    <color name="lighter_gray">#ddd</color>
+    <color name="darker_gray">#aaa</color>
 </resources>

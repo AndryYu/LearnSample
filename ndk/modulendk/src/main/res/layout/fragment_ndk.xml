@@ -27,6 +27,7 @@
         android:id="@+id/fl_ndk_content"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_ndk_back"
         app:layout_constraintTop_toTopOf="parent" />

@@ -43,6 +43,7 @@ class NdkFragment : BaseFragment() {
             } else {
                 binding.tvNdkBack.visibility = View.GONE
                 binding.rvNdkCategory.visibility = View.VISIBLE
+                binding.flNdkContent.visibility = View.GONE
             }
         }
     }
@@ -59,6 +60,9 @@ class NdkFragment : BaseFragment() {
         }
         if (binding.rvNdkCategory.isVisible) {
             binding.rvNdkCategory.visibility = View.GONE
+        }
+        if (binding.flNdkContent.isVisible) {
+            binding.flNdkContent.visibility = View.VISIBLE
         }
         childFragmentManager.beginTransaction()
             .replace(R.id.fl_ndk_content, fragment)
