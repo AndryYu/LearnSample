@@ -5,6 +5,12 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="build-logic">
+        <State />
+      </entry>
+      <entry key="build-logic.convention">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

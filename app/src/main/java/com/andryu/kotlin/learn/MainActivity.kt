@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var mDataList = mutableListOf<LearnEntity>()
-    private var mAdapter: MainAdapter ?=null
+    private lateinit var mAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.rvMain.layoutManager = LinearLayoutManager(this)
         mAdapter = MainAdapter(mDataList)
         binding.rvMain.adapter = mAdapter
-        mAdapter?.setOnItemClick {
+        mAdapter.setOnItemClick {
             onFragmentClick(it.fragment)
         }
         //默认选中第一个

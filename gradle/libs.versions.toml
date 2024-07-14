@@ -1,6 +1,7 @@
 [versions]
+androidTools = "31.4.0"
 agp = "8.3.0"
-kotlin = "1.9.0"
+kotlin = "2.0.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -10,8 +11,12 @@ material = "1.10.0"
 constraintlayout = "2.1.4"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
-activity = "1.8.0"
+activity = "1.8.2"
 hilt = "2.46"
+androidGradlePlugin = "8.3.2"
+room = "2.6.1"
+ksp = "2.0.0-1.0.21"
+dependencyGuard = "0.5.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,10 +32,39 @@ androidx-activity = { group = "androidx.activity", name = "activity", version.re
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
+# Dependencies of the included build-logic
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
+
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+dependencyGuard = { id = "com.dropbox.dependency-guard", version.ref = "dependencyGuard" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# Plugins defined by this project
+andryyu-android-application = { id = "andryyu.android.application", version = "unspecified" }
+andryyu-android-application-compose = { id = "andryyu.android.application.compose", version = "unspecified" }
+andryyu-android-application-firebase = { id = "andryyu.android.application.firebase", version = "unspecified" }
+andryyu-android-application-flavors = { id = "andryyu.android.application.flavors", version = "unspecified" }
+andryyu-android-application-jacoco = { id = "andryyu.android.application.jacoco", version = "unspecified" }
+andryyu-android-feature = { id = "andryyu.android.feature", version = "unspecified" }
+andryyu-android-hilt = { id = "andryyu.android.hilt", version = "unspecified" }
+andryyu-android-library = { id = "andryyu.android.library", version = "unspecified" }
+andryyu-android-library-compose = { id = "andryyu.android.library.compose", version = "unspecified" }
+andryyu-android-library-jacoco = { id = "andryyu.android.library.jacoco", version = "unspecified" }
+andryyu-android-lint = { id = "andryyu.android.lint", version = "unspecified" }
+andryyu-android-room = { id = "andryyu.android.room", version = "unspecified" }
+andryyu-android-test = { id = "andryyu.android.test", version = "unspecified" }
+andryyu-jvm-library = { id = "andryyu.jvm.library", version = "unspecified" }
 
