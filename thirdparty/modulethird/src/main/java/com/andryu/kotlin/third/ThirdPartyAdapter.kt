@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andryu.kotlin.base.entity.LearnEntity
+import javax.inject.Inject
+import javax.inject.Named
 
-class ThirdPartyAdapter(private val dataList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>() {
+class ThirdPartyAdapter @Inject constructor(@Named("thirdList") private val thirdList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>() {
 
     private var mListener: ((entity:LearnEntity) -> Unit?)? = null
 
@@ -20,10 +22,10 @@ class ThirdPartyAdapter(private val dataList:MutableList<LearnEntity>): Recycler
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = thirdList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val entity = dataList[position]
+        val entity = thirdList[position]
         holder.run {
             mItemName.text = entity.name
             itemView.setOnClickListener {

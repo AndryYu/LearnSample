@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    alias(libs.plugins.jetbrainsKotlinKapt)
-    alias(libs.plugins.hiltPlugin)
+    alias(libs.plugins.andryyu.android.hilt)
 }
 
 android {
@@ -29,14 +28,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-
-    implementation libs.androidx.core.ktx
-    implementation libs.androidx.appcompat
-    implementation libs.material
-    // Hilt dependencies
-    implementation libs.hilt.android
-    kapt(libs.hilt.compiler)
+    implementation project(':base')
+    implementation project(':ui')
 }

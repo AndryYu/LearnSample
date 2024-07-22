@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andryu.kotlin.base.entity.LearnEntity
 import com.andryu.kotlin.third.R
 import com.andryu.kotlin.third.ThirdPartyAdapter
+import javax.inject.Inject
+import javax.inject.Named
 
-class MainAdapter (private val dataList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>(){
+class MainAdapter @Inject constructor (@Named("categoryList") private val categoryList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val mItemName: AppCompatTextView = itemView.findViewById(R.id.tv_third_content_name)
@@ -26,10 +28,10 @@ class MainAdapter (private val dataList:MutableList<LearnEntity>): RecyclerView.
         return ThirdPartyAdapter.ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = categoryList.size
 
     override fun onBindViewHolder(holder: ThirdPartyAdapter.ViewHolder, position: Int) {
-        val entity = dataList[position]
+        val entity = categoryList[position]
         holder.run {
             mItemName.text = entity.name
             itemView.setOnClickListener {

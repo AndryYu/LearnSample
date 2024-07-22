@@ -1,5 +1,6 @@
 package com.andryu.kotlin.jni
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,16 +8,18 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andryu.kotlin.base.LogUtils
-import com.andryu.kotlin.base.entity.LearnEntity
 import com.andryu.kotlin.base.fragment.BaseFragment
 import com.andryu.kotlin.jni.databinding.FragmentNdkBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NdkFragment : BaseFragment() {
 
     private var _binding: FragmentNdkBinding? = null
     private val binding get() = _binding!!
-    private var mDataList = mutableListOf<LearnEntity>()
-    private var mAdapter: NdkAdapter? = null
+    @Inject
+    lateinit var mAdapter: NdkAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +31,9 @@ class NdkFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
         binding.rvNdkCategory.layoutManager = LinearLayoutManager(context)
-        mAdapter = NdkAdapter(mDataList)
         binding.rvNdkCategory.adapter = mAdapter
-        mAdapter?.setOnItemClick {
+        mAdapter.setOnItemClick {
             onFragmentClick(it.fragment)
         }
         binding.tvNdkBack.setOnClickListener {
@@ -48,12 +49,7 @@ class NdkFragment : BaseFragment() {
         }
     }
 
-    private fun initData() {
-        mDataList.clear()
-        mDataList.add(LearnEntity("JNI-Simple 使用", JNISimpleFragment()))
-    }
-
-
+    @SuppressLint("CommitTransaction")
     private fun onFragmentClick(fragment: BaseFragment) {
         if (!binding.tvNdkBack.isVisible) {
             binding.tvNdkBack.visibility = View.VISIBLE

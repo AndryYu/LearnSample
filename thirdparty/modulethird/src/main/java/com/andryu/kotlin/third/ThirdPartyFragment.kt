@@ -7,22 +7,23 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andryu.kotlin.base.LogUtils
-import com.andryu.kotlin.base.entity.LearnEntity
 import com.andryu.kotlin.base.fragment.BaseFragment
 import com.andryu.kotlin.base.listener.IFragmentListener
-import com.andryu.kotlin.rxjava.RxjavaCategoryFragment
 import com.andryu.kotlin.third.databinding.FragmentThirdLibraryBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * 第三方库 目录fragment
  */
+@AndroidEntryPoint
 class ThirdPartyFragment : BaseFragment(),IFragmentListener {
 
     private val TAG:String = "ThirdPartyFragment"
     private var _binding: FragmentThirdLibraryBinding? = null
     private val binding get() = _binding!!
-    private var mDataList = mutableListOf<LearnEntity>()
-    private var mAdapter: ThirdPartyAdapter? = null
+    @Inject
+    lateinit var mAdapter: ThirdPartyAdapter
     private var mCurrentFragment:BaseFragment ?= null
 
     override fun onCreateView(
@@ -35,11 +36,9 @@ class ThirdPartyFragment : BaseFragment(),IFragmentListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
         binding.rvThirdParty.layoutManager = LinearLayoutManager(context)
-        mAdapter = ThirdPartyAdapter(mDataList)
         binding.rvThirdParty.adapter = mAdapter
-        mAdapter?.setOnItemClick {
+        mAdapter.setOnItemClick {
             onFragmentClick(it.fragment)
         }
         binding.tvThirdBack.setOnClickListener {
@@ -55,13 +54,6 @@ class ThirdPartyFragment : BaseFragment(),IFragmentListener {
         }
     }
 
-    /**
-     * 初始化数据
-     */
-    private fun initData() {
-        mDataList.clear()
-        mDataList.add(LearnEntity("Rxjava", RxjavaCategoryFragment()))
-    }
 
     override fun onFragmentClick(fragment: BaseFragment) {
         if (!binding.tvThirdBack.isVisible) {

@@ -9,24 +9,25 @@ import com.andryu.kotlin.jni.NdkFragment
 import com.andryu.kotlin.learn.databinding.ActivityMainBinding
 import com.andryu.kotlin.third.ThirdPartyFragment
 import com.andryyu.kotlin.self.SelfContainFragment
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * 首页
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var mDataList = mutableListOf<LearnEntity>()
-    private lateinit var mAdapter: MainAdapter
+    @Inject
+    lateinit var mAdapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initData()
         binding.rvMain.layoutManager = LinearLayoutManager(this)
-        mAdapter = MainAdapter(mDataList)
         binding.rvMain.adapter = mAdapter
         mAdapter.setOnItemClick {
             onFragmentClick(it.fragment)
@@ -35,12 +36,6 @@ class MainActivity : AppCompatActivity() {
         onFragmentClick(ThirdPartyFragment())
     }
 
-    private fun initData(){
-        mDataList.clear()
-        mDataList.add(LearnEntity("Third 开源库", ThirdPartyFragment()))
-        mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
-        mDataList.add(LearnEntity("Ndk 开发", NdkFragment()))
-    }
 
     private fun onFragmentClick(fragment: BaseFragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fl_main, fragment)
