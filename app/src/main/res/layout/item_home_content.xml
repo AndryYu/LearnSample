@@ -4,12 +4,13 @@
     android:layout_height="60dp">
 
     <TextView
-        android:id="@+id/tv_ndk_content"
+        android:id="@+id/tv_home_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:paddingHorizontal="30dp"
         android:textColor="@color/black"
+        android:background="@drawable/bg_item_category"
         android:textSize="16sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

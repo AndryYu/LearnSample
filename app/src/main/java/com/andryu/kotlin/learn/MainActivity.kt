@@ -36,7 +36,15 @@ class MainActivity : AppCompatActivity() {
         onFragmentClick(ThirdPartyFragment())
     }
 
+    private fun initData(){
+        mDataList.clear()
+        mDataList.add(LearnEntity("Third 开源库", ThirdPartyFragment()))
+        mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
+        mDataList.add(LearnEntity("Ndk 开发", NdkFragment()))
+        mDataList.add(LearnEntity("OpenGL和Vulkan使用", NdkFragment()))
+    }
 
+    @SuppressLint("CommitTransaction")
     private fun onFragmentClick(fragment: BaseFragment) {
         supportFragmentManager.beginTransaction().replace(R.id.fl_main, fragment)
             .addToBackStack(fragment::class.java.name)

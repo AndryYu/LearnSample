@@ -34,7 +34,6 @@ android {
 
 dependencies {
     implementation project(':base')
-    implementation project(':ui')
     implementation libraries.rxjava
     implementation libraries.rxAndroid
 }

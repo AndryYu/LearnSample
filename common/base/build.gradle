@@ -28,10 +28,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
     api libs.androidx.core.ktx
     api libs.androidx.appcompat
     api libs.material
+    api project(':ui')
 }

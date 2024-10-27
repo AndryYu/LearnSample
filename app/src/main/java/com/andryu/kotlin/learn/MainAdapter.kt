@@ -13,19 +13,16 @@ import javax.inject.Named
 
 class MainAdapter @Inject constructor (@Named("categoryList") private val categoryList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>(){
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mItemName: AppCompatTextView = itemView.findViewById(R.id.tv_third_content_name)
-    }
-
+    private var mSelectPosition: Int = 0
     private var mListener: ((entity:LearnEntity) -> Unit?)? = null
 
     fun setOnItemClick(listener:(entity:LearnEntity) -> Unit){
         mListener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThirdPartyAdapter.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_third_party_content, parent, false)
-        return ThirdPartyAdapter.ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_home_content, parent, false)
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int = categoryList.size
@@ -36,7 +33,18 @@ class MainAdapter @Inject constructor (@Named("categoryList") private val catego
             mItemName.text = entity.name
             itemView.setOnClickListener {
                 mListener?.invoke(entity)
+                if (position != mSelectPosition){
+                    notifyItemChanged(mSelectPosition);
+                    mSelectPosition = position;
+                }
+                notifyItemChanged(position)
             }
+
+            mItemName.isSelected = (position == mSelectPosition)
         }
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val mItemName: AppCompatTextView = itemView.findViewById(R.id.tv_home_item)
     }
 }
