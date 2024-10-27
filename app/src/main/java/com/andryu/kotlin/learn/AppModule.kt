@@ -20,6 +20,7 @@ class AppModule {
         mDataList.add(LearnEntity("Third 开源库", ThirdPartyFragment()))
         mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
         mDataList.add(LearnEntity("Ndk 开发", NdkFragment()))
+        mDataList.add(LearnEntity("OpenGL和Vulkan使用", NdkFragment()))
         return mDataList
     }
 }

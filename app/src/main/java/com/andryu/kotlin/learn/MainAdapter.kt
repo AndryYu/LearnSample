@@ -1,17 +1,17 @@
 package com.andryu.kotlin.learn
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andryu.kotlin.base.entity.LearnEntity
-import com.andryu.kotlin.third.R
-import com.andryu.kotlin.third.ThirdPartyAdapter
 import javax.inject.Inject
 import javax.inject.Named
 
-class MainAdapter @Inject constructor (@Named("categoryList") private val categoryList:MutableList<LearnEntity>): RecyclerView.Adapter<ThirdPartyAdapter.ViewHolder>(){
+class MainAdapter @Inject constructor (@Named("categoryList") private val categoryList:MutableList<LearnEntity>) :
+    RecyclerView.Adapter<MainAdapter.ViewHolder>(){
 
     private var mSelectPosition: Int = 0
     private var mListener: ((entity:LearnEntity) -> Unit?)? = null
@@ -27,7 +27,7 @@ class MainAdapter @Inject constructor (@Named("categoryList") private val catego
 
     override fun getItemCount(): Int = categoryList.size
 
-    override fun onBindViewHolder(holder: ThirdPartyAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         val entity = categoryList[position]
         holder.run {
             mItemName.text = entity.name

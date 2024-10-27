@@ -1,5 +1,6 @@
 package com.andryu.kotlin.learn
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,14 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
         //默认选中第一个
         onFragmentClick(ThirdPartyFragment())
-    }
-
-    private fun initData(){
-        mDataList.clear()
-        mDataList.add(LearnEntity("Third 开源库", ThirdPartyFragment()))
-        mDataList.add(LearnEntity("Android 系统自带", SelfContainFragment()))
-        mDataList.add(LearnEntity("Ndk 开发", NdkFragment()))
-        mDataList.add(LearnEntity("OpenGL和Vulkan使用", NdkFragment()))
     }
 
     @SuppressLint("CommitTransaction")

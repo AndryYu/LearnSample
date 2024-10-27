@@ -35,8 +35,8 @@ android {
 }
 
 dependencies {
-    implementation project(':ui')
     // Hilt dependencies
     implementation libs.hilt.android
+    implementation project(':base')
     kapt(libs.hilt.compiler)
 }

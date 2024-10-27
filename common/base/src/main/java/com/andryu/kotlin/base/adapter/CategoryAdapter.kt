@@ -7,10 +7,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.andryu.kotlin.base.R
 import com.andryu.kotlin.base.entity.LearnEntity
-import javax.inject.Inject
-import javax.inject.Named
 
-class NdkAdapter @Inject constructor(@Named("ndkList") private val ndkList:MutableList<LearnEntity>): RecyclerView.Adapter<NdkAdapter.ViewHolder>() {
 class CategoryAdapter(private val dataList:MutableList<LearnEntity>): RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     private var mListener: ((entity:LearnEntity) -> Unit?)? = null
